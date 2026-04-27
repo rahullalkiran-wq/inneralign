@@ -1,46 +1,34 @@
 /* ═══════════════════════════════════════════
-   INNERALIGN — SACRED COSMOS DESIGN SYSTEM
-   Midnight Blue + Candlelight Gold + Spiritual
+   INNERALIGN — ZEN-TECH DESIGN SYSTEM
+   Neo-Glassmorphism + Dark Mode
    ═══════════════════════════════════════════ */
 
 /* ── TOKENS ── */
 :root {
-  /* Deep midnight navy backgrounds */
-  --bg-base: #04080F;
-  --bg-surface: #070D1A;
-  --bg-elevated: #0C1426;
+  --bg-base: #080C14;
+  --bg-surface: #0D1220;
+  --bg-elevated: #111827;
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-hover: rgba(255,255,255,0.07);
 
-  /* Gold-tinted glass */
-  --glass-bg: rgba(212,175,95,0.04);
-  --glass-border: rgba(212,175,95,0.12);
-  --glass-hover: rgba(212,175,95,0.08);
+  --teal: #7EE8C8;
+  --teal-dim: rgba(126,232,200,0.15);
+  --teal-glow: rgba(126,232,200,0.25);
+  --purple: #A78BFA;
+  --purple-dim: rgba(167,139,250,0.15);
+  --purple-glow: rgba(167,139,250,0.25);
+  --pink: #F9A8D4;
+  --pink-dim: rgba(249,168,212,0.12);
+  --amber: #FBBF24;
+  --green: #34D399;
+  --red: #F87171;
+  --orange: #FB923C;
 
-  /* Primary: Candlelight Gold */
-  --teal: #D4AF5F;
-  --teal-dim: rgba(212,175,95,0.15);
-  --teal-glow: rgba(212,175,95,0.28);
+  --text-primary: rgba(255,255,255,0.92);
+  --text-secondary: rgba(255,255,255,0.52);
+  --text-muted: rgba(255,255,255,0.28);
 
-  /* Secondary: Sacred Indigo */
-  --purple: #7B8FD4;
-  --purple-dim: rgba(123,143,212,0.15);
-  --purple-glow: rgba(123,143,212,0.25);
-
-  /* Tertiary: Soft Lotus Pink */
-  --pink: #C9A0A0;
-  --pink-dim: rgba(201,160,160,0.12);
-
-  /* Functional */
-  --amber: #E8C468;
-  --green: #7EC8A0;
-  --red: #C97B7B;
-  --orange: #D4956A;
-
-  /* Text — warm white, not cold */
-  --text-primary: rgba(240,232,215,0.94);
-  --text-secondary: rgba(240,232,215,0.50);
-  --text-muted: rgba(240,232,215,0.26);
-
-  /* Fonts — same, they work perfectly */
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'DM Mono', monospace;
@@ -50,9 +38,9 @@
   --radius-lg: 22px;
   --radius-xl: 28px;
 
-  --shadow-glow-teal: 0 0 40px rgba(212,175,95,0.14);
-  --shadow-glow-purple: 0 0 40px rgba(123,143,212,0.12);
-  --shadow-card: 0 4px 32px rgba(0,0,0,0.5);
+  --shadow-glow-teal: 0 0 40px rgba(126,232,200,0.12);
+  --shadow-glow-purple: 0 0 40px rgba(167,139,250,0.12);
+  --shadow-card: 0 4px 32px rgba(0,0,0,0.4);
 
   --sidebar-w: 220px;
   --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
