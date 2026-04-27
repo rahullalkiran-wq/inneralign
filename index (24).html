@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnerAlign — Behavioral Clarity Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       ONBOARDING FLOW
+  ══════════════════════════════════ -->
+  <div id="onboarding" class="onboarding-shell">
+
+    <!-- Step 0: Splash / Brand Intro -->
+    <section class="ob-step active" id="ob-0">
+      <div class="splash-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="noise-overlay"></div>
+      </div>
+      <div class="splash-content">
+        <div class="logo-mark">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="22" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
+            <path d="M24 8 L24 40 M14 16 L34 16 M10 24 L38 24 M14 32 L34 32" stroke="url(#logoGrad)" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="24" cy="24" r="4" fill="url(#logoGrad)" opacity="0.9"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="48">
+                <stop offset="0%" stop-color="#7EE8C8"/>
+                <stop offset="100%" stop-color="#A78BFA"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1 class="splash-title">InnerAlign</h1>
+        <p class="splash-sub">Behavioral Clarity Engine</p>
+        <p class="splash-tagline">Decode your patterns. Align your decisions.<br/>Measure your growth.</p>
+        <button class="btn-primary btn-glow ob-next" data-target="ob-1">
+          Begin Your Alignment
+          <span class="btn-arrow">→</span>
+        </button>
+        <p class="splash-note">Free for Upskalor Community builders</p>
+      </div>
+    </section>
+
+    <!-- Step 1: What Brings You Here -->
+    <section class="ob-step" id="ob-1">
+      <div class="ob-inner">
+        <div class="ob-progress"><div class="ob-bar" style="width:25%"></div></div>
+        <p class="ob-step-label">01 / 04</p>
+        <h2 class="ob-heading">What are you seeking clarity on?</h2>
+        <p class="ob-subtext">Your answers shape your personal Clarity Engine.</p>
+        <div class="choice-grid" id="intent-choices">
+          <button class="choice-card" data-val="decisions">
+            <span class="choice-icon">⚡</span>
+            <span class="choice-label">Better Decisions</span>
+            <span class="choice-desc">Stop second-guessing and move with confidence</span>
+          </button>
+          <button class="choice-card" data-val="patterns">
+            <span class="choice-icon">🔁</span>
+            <span class="choice-label">Break Patterns</span>
+            <span class="choice-desc">Identify loops that hold you back</span>
+          </button>
+          <button class="choice-card" data-val="energy">
+            <span class="choice-icon">🔋</span>
+            <span class="choice-label">Energy & Focus</span>
+            <span class="choice-desc">Understand what drains and fuels you</span>
+          </button>
+          <button class="choice-card" data-val="goals">
+            <span class="choice-icon">🎯</span>
+            <span class="choice-label">Goal Alignment</span>
+            <span class="choice-desc">Bridge intention and daily action</span>
+          </button>
+        </div>
+        <button class="btn-primary ob-next disabled" id="btn-ob1" data-target="ob-2">Continue</button>
+      </div>
+    </section>
+
+    <!-- Step 2: First Journal Entry -->
+    <section class="ob-step" id="ob-2">
+      <div class="ob-inner">
+        <div class="ob-progress"><div class="ob-bar" style="width:50%"></div></div>
+        <p class="ob-step-label">02 / 04</p>
+        <h2 class="ob-heading">Describe your last big decision moment.</h2>
+        <p class="ob-subtext">Be honest. InnerAlign detects what you feel, not just what you say.</p>
+        <div class="journal-input-wrap">
+          <textarea id="ob-journal" class="journal-textarea" placeholder="I had to decide whether to... and I felt..." rows="6"></textarea>
+          <div class="journal-meta">
+            <span class="char-count" id="char-count">0 / 300</span>
+            <div class="sentiment-pill" id="sentiment-pill">
+              <span class="s-dot"></span>
+              <span id="sentiment-label">Detecting…</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary ob-next" id="btn-ob2" data-target="ob-3">Analyze My Entry</button>
+      </div>
+    </section>
+
+    <!-- Step 3: Initial Clarity Score -->
+    <section class="ob-step" id="ob-3">
+      <div class="ob-inner ob-inner--center">
+        <div class="ob-progress"><div class="ob-bar" style="width:75%"></div></div>
+        <p class="ob-step-label">03 / 04</p>
+        <h2 class="ob-heading">Your Baseline Clarity</h2>
+        <p class="ob-subtext">Based on your first entry, here's where you stand today.</p>
+        <div class="baseline-ring-wrap">
+          <div class="baseline-ring" id="baseline-ring">
+            <svg class="ring-svg" viewBox="0 0 200 200">
+              <circle class="ring-bg" cx="100" cy="100" r="80"/>
+              <circle class="ring-fill" id="ring-fill" cx="100" cy="100" r="80" 
+                stroke-dasharray="502" stroke-dashoffset="502"/>
+            </svg>
+            <div class="ring-inner">
+              <span class="ring-score" id="ring-score">0</span>
+              <span class="ring-label">Clarity Score</span>
+            </div>
+          </div>
+        </div>
+        <div class="baseline-signals" id="baseline-signals"></div>
+        <button class="btn-primary ob-next" data-target="ob-4">See My Dashboard</button>
+      </div>
+    </section>
+
+    <!-- Step 4: Name + Goal -->
+    <section class="ob-step" id="ob-4">
+      <div class="ob-inner">
+        <div class="ob-progress"><div class="ob-bar" style="width:100%"></div></div>
+        <p class="ob-step-label">04 / 04</p>
+        <h2 class="ob-heading">One last thing.</h2>
+        <p class="ob-subtext">What should we call you, and what's your #1 goal this month?</p>
+        <div class="field-group">
+          <label class="field-label">Your name</label>
+          <input type="text" class="field-input" id="user-name" placeholder="e.g. Aryan" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Primary goal this month</label>
+          <input type="text" class="field-input" id="user-goal" placeholder="e.g. Ship my AI project to 100 users" />
+        </div>
+        <button class="btn-primary btn-glow" id="enter-dashboard">
+          Enter InnerAlign
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+  </div><!-- /onboarding -->
+
+
+  <!-- ══════════════════════════════════
+       MAIN DASHBOARD
+  ══════════════════════════════════ -->
+  <div id="dashboard" class="dashboard-shell hidden">
+
+    <!-- Ambient Background -->
+    <div class="dash-bg">
+      <div class="orb orb-d1"></div>
+      <div class="orb orb-d2"></div>
+      <div class="noise-overlay"></div>
+    </div>
+
+    <!-- ── SIDEBAR (desktop) ── -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="url(#sLogoGrad)" stroke-width="1.5" fill="none"/>
+          <path d="M24 8 L24 40 M14 16 L34 16 M10 24 L38 24 M14 32 L34 32" stroke="url(#sLogoGrad)" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="24" cy="24" r="4" fill="url(#sLogoGrad)" opacity="0.9"/>
+          <defs>
+            <linearGradient id="sLogoGrad" x1="0" y1="0" x2="48" y2="48">
+              <stop offset="0%" stop-color="#7EE8C8"/>
+              <stop offset="100%" stop-color="#A78BFA"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>InnerAlign</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="nav-item active" data-view="home" href="#">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" data-view="journal" href="#">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Journal</span>
+        </a>
+        <a class="nav-item" data-view="agents" href="#">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Agents</span>
+        </a>
+        <a class="nav-item" data-view="studio" href="#">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Studio</span>
+        </a>
+        <a class="nav-item" data-view="growth" href="#">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="16 7 22 7 22 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Growth</span>
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="user-chip">
+          <div class="user-avatar" id="sidebar-avatar">A</div>
+          <div class="user-info">
+            <span class="user-name-text" id="sidebar-name">Aryan</span>
+            <span class="user-plan">Free Builder</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main class="dash-main">
+
+      <!-- ── HOME VIEW ── -->
+      <div class="view active" id="view-home">
+        <header class="dash-header">
+          <div class="header-left">
+            <h1 class="page-title">Good morning, <span id="greeting-name">Aryan</span> 👋</h1>
+            <p class="page-sub" id="greeting-sub">Your clarity engine has detected 2 new patterns overnight.</p>
+          </div>
+          <div class="header-right">
+            <div class="header-date" id="header-date"></div>
+            <button class="btn-journal-quick" id="quick-journal-btn">+ Journal Entry</button>
+          </div>
+        </header>
+
+        <!-- BENTO GRID -->
+        <div class="bento-grid">
+
+          <!-- CARD 1: Clarity Score (large) -->
+          <div class="bento-card card-clarity reveal">
+            <div class="card-tag">Live Score</div>
+            <div class="clarity-content">
+              <div class="clarity-ring-wrap">
+                <svg class="clarity-svg" viewBox="0 0 160 160">
+                  <circle class="cring-bg" cx="80" cy="80" r="66"/>
+                  <circle class="cring-drift" id="cring-drift" cx="80" cy="80" r="66"
+                    stroke-dasharray="414" stroke-dashoffset="414"/>
+                  <circle class="cring-align" id="cring-align" cx="80" cy="80" r="54"
+                    stroke-dasharray="339" stroke-dashoffset="339"/>
+                </svg>
+                <div class="clarity-center">
+                  <span class="clarity-num" id="clarity-num">72</span>
+                  <span class="clarity-lbl">/ 100</span>
+                </div>
+              </div>
+              <div class="clarity-legend">
+                <div class="legend-item">
+                  <span class="l-dot l-teal"></span>
+                  <span class="l-txt">Drift Score <strong id="leg-drift">72</strong></span>
+                </div>
+                <div class="legend-item">
+                  <span class="l-dot l-purple"></span>
+                  <span class="l-txt">Alignment <strong id="leg-align">58</strong></span>
+                </div>
+                <div class="legend-item trend-up">
+                  <span class="l-dot l-green"></span>
+                  <span class="l-txt">↑ +8 this week</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: AI Insight (wide) -->
+          <div class="bento-card card-insight reveal">
+            <div class="card-tag">Clarity Copilot</div>
+            <div class="insight-body">
+              <div class="ai-avatar-ring">
+                <svg width="36" height="36" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="16" stroke="url(#aiGrad)" stroke-width="1" fill="none"/>
+                  <circle cx="18" cy="18" r="6" fill="url(#aiGrad)" opacity="0.7"/>
+                  <defs>
+                    <linearGradient id="aiGrad" x1="0" y1="0" x2="36" y2="36">
+                      <stop offset="0%" stop-color="#7EE8C8"/>
+                      <stop offset="100%" stop-color="#A78BFA"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="insight-text">
+                <p class="insight-message" id="insight-message">Your last 5 entries reveal an <strong>avoidance pattern</strong> before high-stakes outreach. You tend to overthink content before publishing — this is your #1 drift signal right now.</p>
+                <div class="insight-actions" id="insight-actions">
+                  <button class="ia-btn" data-action="reset">🌬 3-min Reset</button>
+                  <button class="ia-btn" data-action="task">✅ Create Task</button>
+                  <button class="ia-btn" data-action="journal">📝 Reflect Now</button>
+                </div>
+              </div>
+            </div>
+            <div class="copilot-input-bar">
+              <input type="text" id="copilot-input" placeholder="Ask your clarity copilot…" />
+              <button id="copilot-send">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- CARD 3: Drift Signals -->
+          <div class="bento-card card-signals reveal">
+            <div class="card-tag">Pattern Signals</div>
+            <div class="signals-list" id="signals-list">
+              <div class="signal-row">
+                <div class="signal-info">
+                  <span class="signal-name">Avoidance</span>
+                  <span class="signal-evidence">Before client calls, content posting</span>
+                </div>
+                <div class="signal-bar-wrap">
+                  <div class="signal-bar" style="--pct:81%;--clr:#F87171"></div>
+                  <span class="signal-pct">81%</span>
+                </div>
+              </div>
+              <div class="signal-row">
+                <div class="signal-info">
+                  <span class="signal-name">Overthinking</span>
+                  <span class="signal-evidence">Rewriting without shipping</span>
+                </div>
+                <div class="signal-bar-wrap">
+                  <div class="signal-bar" style="--pct:66%;--clr:#FB923C"></div>
+                  <span class="signal-pct">66%</span>
+                </div>
+              </div>
+              <div class="signal-row">
+                <div class="signal-info">
+                  <span class="signal-name">Decision Delay</span>
+                  <span class="signal-evidence">High-stakes choices postponed 2+ days</span>
+                </div>
+                <div class="signal-bar-wrap">
+                  <div class="signal-bar" style="--pct:44%;--clr:#FBBF24"></div>
+                  <span class="signal-pct">44%</span>
+                </div>
+              </div>
+              <div class="signal-row">
+                <div class="signal-info">
+                  <span class="signal-name">Clarity Flow</span>
+                  <span class="signal-evidence">Morning work sessions ↑ productive</span>
+                </div>
+                <div class="signal-bar-wrap">
+                  <div class="signal-bar" style="--pct:73%;--clr:#34D399"></div>
+                  <span class="signal-pct">73%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: Weekly Spark Chart -->
+          <div class="bento-card card-spark reveal">
+            <div class="card-tag">Clarity Trend</div>
+            <div class="spark-header">
+              <span class="spark-title">7-Day Drift History</span>
+              <span class="spark-delta positive">+12%</span>
+            </div>
+            <div class="spark-chart" id="spark-chart"></div>
+            <div class="spark-labels">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+          </div>
+
+          <!-- CARD 5: Active Tasks -->
+          <div class="bento-card card-tasks reveal">
+            <div class="card-tag">Micro-Corrections</div>
+            <div class="tasks-list" id="tasks-list">
+              <div class="task-item">
+                <button class="task-check" data-done="false"></button>
+                <div class="task-body">
+                  <span class="task-title">Call 1 warm lead — 15 min</span>
+                  <span class="task-due">Due in 6 hours</span>
+                </div>
+                <span class="task-badge urgent">Now</span>
+              </div>
+              <div class="task-item">
+                <button class="task-check" data-done="false"></button>
+                <div class="task-body">
+                  <span class="task-title">Post the InnerAlign thread</span>
+                  <span class="task-due">Due today</span>
+                </div>
+                <span class="task-badge medium">Today</span>
+              </div>
+              <div class="task-item">
+                <button class="task-check" data-done="true"></button>
+                <div class="task-body task-done">
+                  <span class="task-title">Morning clarity journal</span>
+                  <span class="task-due">Completed ✓</span>
+                </div>
+                <span class="task-badge done">Done</span>
+              </div>
+            </div>
+            <button class="add-task-btn" id="add-task-btn">+ Add correction task</button>
+          </div>
+
+          <!-- CARD 6: Energy State -->
+          <div class="bento-card card-energy reveal">
+            <div class="card-tag">Energy State</div>
+            <div class="energy-orb-wrap">
+              <div class="energy-orb" id="energy-orb">
+                <span class="energy-emoji">⚡</span>
+              </div>
+              <div class="energy-label-wrap">
+                <span class="energy-state-text" id="energy-state-text">High Focus</span>
+                <span class="energy-time">Peak: 6–10 AM, 3–5 PM</span>
+              </div>
+            </div>
+            <div class="energy-states">
+              <button class="es-btn active" data-state="high">⚡ High</button>
+              <button class="es-btn" data-state="flow">🌊 Flow</button>
+              <button class="es-btn" data-state="low">🌫 Low</button>
+              <button class="es-btn" data-state="rest">🌙 Rest</button>
+            </div>
+          </div>
+
+          <!-- CARD 7: Goal Tracker -->
+          <div class="bento-card card-goal reveal">
+            <div class="card-tag">Monthly Goal</div>
+            <div class="goal-content">
+              <p class="goal-text" id="goal-text">Ship InnerAlign to 100 users</p>
+              <div class="goal-progress-wrap">
+                <div class="goal-bar">
+                  <div class="goal-fill" id="goal-fill" style="width: 34%"></div>
+                </div>
+                <span class="goal-pct">34%</span>
+              </div>
+              <div class="goal-stats">
+                <div class="gs-item">
+                  <span class="gs-num">12</span>
+                  <span class="gs-lbl">Days Left</span>
+                </div>
+                <div class="gs-item">
+                  <span class="gs-num">34</span>
+                  <span class="gs-lbl">Users</span>
+                </div>
+                <div class="gs-item">
+                  <span class="gs-num">3</span>
+                  <span class="gs-lbl">Blockers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 8: Streak -->
+          <div class="bento-card card-streak reveal">
+            <div class="card-tag">Consistency</div>
+            <div class="streak-content">
+              <div class="streak-flame">🔥</div>
+              <div class="streak-num" id="streak-num">7</div>
+              <div class="streak-lbl">Day Streak</div>
+              <div class="streak-dots" id="streak-dots"></div>
+            </div>
+          </div>
+
+        </div><!-- /bento-grid -->
+      </div><!-- /view-home -->
+
+      <!-- ── JOURNAL VIEW ── -->
+      <div class="view" id="view-journal">
+        <header class="dash-header">
+          <h1 class="page-title">Journal</h1>
+          <p class="page-sub">Your thinking space. Patterns emerge here.</p>
+        </header>
+        <div class="journal-view-wrap">
+          <div class="journal-editor-panel glass-panel">
+            <div class="jep-header">
+              <span class="jep-date" id="jep-date"></span>
+              <div class="jep-mood-btns">
+                <button class="mood-btn active" data-mood="0">😰</button>
+                <button class="mood-btn" data-mood="1">😐</button>
+                <button class="mood-btn" data-mood="2">🙂</button>
+                <button class="mood-btn" data-mood="3">😊</button>
+                <button class="mood-btn" data-mood="4">🔥</button>
+              </div>
+            </div>
+            <textarea id="journal-main" class="journal-main-editor" placeholder="What's on your mind? What decisions are you weighing? What patterns do you notice in yourself today?…"></textarea>
+            <div class="jep-footer">
+              <div class="jep-tags">
+                <span class="jtag" id="jtag-sentiment">Analyzing…</span>
+              </div>
+              <button class="btn-primary btn-sm" id="analyze-journal-btn">Analyze with AI →</button>
+            </div>
+          </div>
+          <div class="journal-insights-panel">
+            <div class="glass-panel ji-panel" id="ji-panel">
+              <h3 class="ji-title">AI Analysis</h3>
+              <p class="ji-placeholder" id="ji-placeholder">Write a journal entry and click "Analyze with AI" to see your patterns.</p>
+              <div class="ji-result hidden" id="ji-result"></div>
+            </div>
+            <div class="glass-panel past-entries-panel">
+              <h3 class="pe-title">Past Entries</h3>
+              <div class="pe-list" id="pe-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AGENTS VIEW ── -->
+      <div class="view" id="view-agents">
+        <header class="dash-header">
+          <h1 class="page-title">Clarity Agents</h1>
+          <p class="page-sub">Your behavioral AI system — 3 agents working in tandem.</p>
+        </header>
+        <div class="agents-grid">
+          <div class="agent-card glass-panel reveal">
+            <div class="agent-status running"></div>
+            <div class="agent-icon" style="--ac:#7EE8C8">🔍</div>
+            <h3>Pattern Detector</h3>
+            <p>Reads your journals, decisions, and missed commitments to surface recurring behavioral loops.</p>
+            <div class="agent-stats">
+              <div class="as-item"><span>14</span><small>Patterns Found</small></div>
+              <div class="as-item"><span>3</span><small>New Today</small></div>
+            </div>
+            <div class="agent-activity" id="pa-activity">
+              <div class="activity-pulse"></div>
+              <span>Processing last entry…</span>
+            </div>
+          </div>
+          <div class="agent-card glass-panel reveal">
+            <div class="agent-status idle"></div>
+            <div class="agent-icon" style="--ac:#A78BFA">🧭</div>
+            <h3>Alignment Coach</h3>
+            <p>Checks whether your daily actions align with your stated long-term goals and values.</p>
+            <div class="agent-stats">
+              <div class="as-item"><span>58%</span><small>Alignment</small></div>
+              <div class="as-item"><span>+5%</span><small>This Week</small></div>
+            </div>
+            <div class="agent-activity">
+              <div class="activity-dot"></div>
+              <span>Awaiting new journal entry</span>
+            </div>
+          </div>
+          <div class="agent-card glass-panel reveal">
+            <div class="agent-status running"></div>
+            <div class="agent-icon" style="--ac:#F9A8D4">⚡</div>
+            <h3>Action Executor</h3>
+            <p>Creates calendar tasks, reflection prompts, and 24hr micro-challenges based on detected drift.</p>
+            <div class="agent-stats">
+              <div class="as-item"><span>5</span><small>Tasks Created</small></div>
+              <div class="as-item"><span>3</span><small>Completed</small></div>
+            </div>
+            <div class="agent-activity">
+              <div class="activity-pulse"></div>
+              <span>Generated 2 tasks today</span>
+            </div>
+          </div>
+        </div>
+        <div class="dual-loop-section glass-panel">
+          <h3 class="dls-title">Dual Loop Engine</h3>
+          <div class="loop-diagram" id="loop-diagram"></div>
+        </div>
+      </div>
+
+      <!-- ── STUDIO VIEW ── -->
+      <div class="view" id="view-studio">
+        <header class="dash-header">
+          <h1 class="page-title">Upskalor Builder Studio</h1>
+          <p class="page-sub">Build behavioral agents. Ship real AI systems.</p>
+        </header>
+        <div class="studio-wrap">
+          <div class="studio-hero glass-panel">
+            <div class="sh-icon">🛠</div>
+            <h2>Build India's First Behavioral AI OS</h2>
+            <p>Access the sandbox where Odisha engineers build real InnerAlign modules — not tutorial chatbots.</p>
+            <div class="studio-ctas">
+              <button class="btn-primary btn-glow">Launch Sandbox →</button>
+              <button class="btn-ghost">View Templates</button>
+            </div>
+          </div>
+          <div class="studio-layers">
+            <div class="layer-card glass-panel">
+              <span class="layer-num">01</span>
+              <h4>Agent Fundamentals</h4>
+              <p>Tool calling, memory, context passing. Build journal pattern extractor.</p>
+              <span class="layer-badge free">Free</span>
+            </div>
+            <div class="layer-card glass-panel">
+              <span class="layer-num">02</span>
+              <h4>Multi-Agent Systems</h4>
+              <p>CrewAI / LangGraph orchestration. Pass data between Pattern Detector, Coach, Executor.</p>
+              <span class="layer-badge free">Free</span>
+            </div>
+            <div class="layer-card glass-panel">
+              <span class="layer-num">03</span>
+              <h4>AI Embedded UI</h4>
+              <p>CopilotKit integration. Trigger actions, update scores, generate UI cards.</p>
+              <span class="layer-badge pro">Pro</span>
+            </div>
+            <div class="layer-card glass-panel">
+              <span class="layer-num">04</span>
+              <h4>Production Thinking</h4>
+              <p>Logging, monitoring, prompt evaluation, deployment pipelines.</p>
+              <span class="layer-badge pro">Pro</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GROWTH VIEW ── -->
+      <div class="view" id="view-growth">
+        <header class="dash-header">
+          <h1 class="page-title">Growth Map</h1>
+          <p class="page-sub">Your measurable self-growth. Week by week, behavior by behavior.</p>
+        </header>
+        <div class="growth-grid">
+          <div class="glass-panel growth-timeline">
+            <h3 class="gt-title">Clarity Journey</h3>
+            <div class="timeline" id="timeline"></div>
+          </div>
+          <div class="glass-panel growth-insights">
+            <h3>Key Breakthroughs</h3>
+            <div class="breakthrough-list">
+              <div class="bt-item">
+                <span class="bt-icon">🏆</span>
+                <div>
+                  <strong>First shipped — not perfected</strong>
+                  <p>Day 4 — broke the overthinking loop. Posted without editing 14 times.</p>
+                </div>
+              </div>
+              <div class="bt-item">
+                <span class="bt-icon">🎯</span>
+                <div>
+                  <strong>Clarity score crossed 70</strong>
+                  <p>Day 6 — consistent morning journaling + 3 cold calls completed.</p>
+                </div>
+              </div>
+              <div class="bt-item">
+                <span class="bt-icon">🔥</span>
+                <div>
+                  <strong>7-day streak achieved</strong>
+                  <p>Today — longest unbroken behavioral correction run.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main><!-- /dash-main -->
+
+    <!-- ── BOTTOM NAV (mobile) ── -->
+    <nav class="bottom-nav">
+      <a class="bn-item active" data-view="home" href="#">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="bn-item" data-view="journal" href="#">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Journal</span>
+      </a>
+      <a class="bn-item bn-center" data-view="home" id="fab-btn" href="#">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </a>
+      <a class="bn-item" data-view="agents" href="#">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Agents</span>
+      </a>
+      <a class="bn-item" data-view="growth" href="#">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Growth</span>
+      </a>
+    </nav>
+
+  </div><!-- /dashboard -->
+
+  <!-- ── QUICK JOURNAL MODAL ── -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal-sheet glass-panel">
+      <div class="modal-header">
+        <h3>Quick Journal</h3>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <textarea id="modal-journal" class="journal-textarea" placeholder="What's happening right now? How do you feel about your current path?" rows="5"></textarea>
+      <div class="modal-footer">
+        <button class="btn-primary" id="modal-analyze">Analyze & Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
